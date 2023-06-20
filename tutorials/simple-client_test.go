@@ -75,7 +75,7 @@ func TestDeOSS(t *testing.T) {
 	)
 	assert.NoError(t, err)
 
-	//
+	// todo: write a doc on what `Register()` actually does
 	txHash, _, err := conn.Register(conn.GetRoleName(), p2p.GetPeerPublickey(), "", 0)
 	assert.NoError(t, err)
 
