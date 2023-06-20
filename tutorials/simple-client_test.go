@@ -84,10 +84,12 @@ func TestDeOSS(t *testing.T) {
 	segmentInfo, roothash, err := conn.ProcessingData("../assets/cess-go-sdk-readme.pdf")
 	assert.NoError(t, err)
 
-	owner := []byte("Jimmy Chu")
+	owner := []byte(os.Getenv("MY_ADDR"))
 	fileName := "cess-go-sdk-readme.pdf"
 	bucketName := "test1"
 	fileSize := uint64(1000)
+
+	fmt.Printf("owner: %+v\n\n", owner)
 
 	res, err := conn.GenerateStorageOrder(roothash, segmentInfo, owner, fileName, bucketName, fileSize)
 
