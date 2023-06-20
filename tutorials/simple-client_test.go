@@ -73,15 +73,24 @@ func TestDeOSS(t *testing.T) {
 		p2pgo.Workspace("../workspace"),
 		p2pgo.BootPeers(bootnodes),
 	)
-
 	assert.NoError(t, err)
 
-	fmt.Printf("p2p:\n%+v\n\n", p2p)
-	fmt.Printf("conn:\n%+v\n\n", conn)
-
+	//
 	txHash, _, err := conn.Register(conn.GetRoleName(), p2p.GetPeerPublickey(), "", 0)
-
 	assert.NoError(t, err)
 
 	fmt.Printf("txHash:\n%+v\n\n", txHash)
+
+	segmentInfo, roothash, err := conn.ProcessingData("../assets/cess-go-sdk-readme.pdf")
+	assert.NoError(t, err)
+
+	owner := []byte("Jimmy Chu")
+	fileName := "cess-go-sdk-readme.pdf"
+	bucketName := "test1"
+	fileSize := uint64(1000)
+
+	res, err := conn.GenerateStorageOrder(roothash, segmentInfo, owner, fileName, bucketName, fileSize)
+
+	fmt.Printf("res: %+v\n\n", res)
+	fmt.Printf("err: %+v\n\n", err)
 }
