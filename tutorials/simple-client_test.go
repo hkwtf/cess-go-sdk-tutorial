@@ -76,9 +76,12 @@ func TestDeOSS(t *testing.T) {
 
 	assert.NoError(t, err)
 
-	txHash, _, err := conn.Register(conn.GetRoleName(), p2p.GetPeerPublicKey(), "", 0)
+	fmt.Printf("p2p:\n%+v\n\n", p2p)
+	fmt.Printf("conn:\n%+v\n\n", conn)
+
+	txHash, _, err := conn.Register(conn.GetRoleName(), p2p.GetPeerPublickey(), "", 0)
 
 	assert.NoError(t, err)
 
-	fmt.Printf("%+v\n", txHash)
+	fmt.Printf("txHash:\n%+v\n\n", txHash)
 }
