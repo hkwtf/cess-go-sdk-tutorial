@@ -70,7 +70,7 @@ func TestDeOSS(t *testing.T) {
 	p2p, err := p2pgo.New(
 		context.Background(),
 		p2pgo.ListenPort(P2P_PORT),
-		p2pgo.Workspace("./"),
+		p2pgo.Workspace("../workspace"),
 		p2pgo.BootPeers(bootnodes),
 	)
 
