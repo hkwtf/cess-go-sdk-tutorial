@@ -51,6 +51,8 @@ github.com/CESSProject/cess-go-sdk v0.0.73 h1:AEIebIbnpnDUoPjSDfOsxRn0CJrC/8lnKf
 github.com/CESSProject/cess-go-sdk v0.0.73/go.mod h1:9paiKgRhMr/oPL7TmviK38Y9zwuUu5UOtoSo0XuZl30=
 github.com/CESSProject/cess-go-sdk v0.0.77 h1:2WGHL32uoPvGd3HUvr7GvLbUHqLBLK1A9PJDBvR6yhE=
 github.com/CESSProject/cess-go-sdk v0.0.77/go.mod h1:9paiKgRhMr/oPL7TmviK38Y9zwuUu5UOtoSo0XuZl30=
+github.com/CESSProject/cess-go-sdk v0.2.3 h1:2tPm/tTArP5atlWpozZL214jo7614zUwwMjScRPskCg=
+github.com/CESSProject/cess-go-sdk v0.2.3/go.mod h1:SFo2ZFTi7yP5ig53xTNDEqXHvLl8aLCE7Nwj0aZcRWM=
 github.com/CESSProject/p2p-go v0.0.33 h1:2EXMEa1RAFHWfRTd5O6pyKQMBIbpsedIJvlYAFX/Qp0=
 github.com/CESSProject/p2p-go v0.0.33/go.mod h1:MmuZ2UfXnEJMZMhOCC4Ec5QQUJCT7j2yg3Xk/oZ16yw=
 github.com/ChainSafe/go-schnorrkel v1.0.0 h1:3aDA67lAykLaG1y3AOjs88dMxC88PgUuHRrLeDnvGIM=
@@ -516,6 +518,8 @@ github.com/libp2p/go-libp2p v0.26.3 h1:6g/psubqwdaBqNNoidbRKSTBEYgaOuKBhHl8Q5tO+
 github.com/libp2p/go-libp2p v0.26.3/go.mod h1:x75BN32YbwuY0Awm2Uix4d4KOz+/4piInkp4Wr3yOo8=
 github.com/libp2p/go-libp2p v0.28.0 h1:zO8cY98nJiPzZpFv5w5gqqb8aVzt4ukQ0nVOSaaKhJ8=
 github.com/libp2p/go-libp2p v0.28.0/go.mod h1:s3Xabc9LSwOcnv9UD4nORnXKTsWkPMkIMB/JIGXVnzk=
+github.com/libp2p/go-libp2p v0.28.1 h1:YurK+ZAI6cKfASLJBVFkpVBdl3wGhFi6fusOt725ii8=
+github.com/libp2p/go-libp2p v0.28.1/go.mod h1:s3Xabc9LSwOcnv9UD4nORnXKTsWkPMkIMB/JIGXVnzk=
 github.com/libp2p/go-libp2p-asn-util v0.2.0 h1:rg3+Os8jbnO5DxkC7K/Utdi+DkY3q/d1/1q+8WeNAsw=
 github.com/libp2p/go-libp2p-asn-util v0.2.0/go.mod h1:WoaWxbHKBymSN41hWSq/lGKJEca7TNm58+gGJi2WsLI=
 github.com/libp2p/go-libp2p-asn-util v0.3.0 h1:gMDcMyYiZKkocGXDQ5nsUQyquC9+H+iLEQHwOCZ7s8s=

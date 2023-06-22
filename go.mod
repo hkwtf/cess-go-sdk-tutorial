@@ -3,7 +3,7 @@ module github.com/CESSProject/cess-go-sdk-tutorial
 go 1.19
 
 require (
-	github.com/CESSProject/cess-go-sdk v0.0.77
+	github.com/CESSProject/cess-go-sdk v0.2.3
 	github.com/CESSProject/p2p-go v0.0.33
 	github.com/joho/godotenv v1.5.1
 	github.com/stretchr/testify v1.8.2
@@ -67,7 +67,7 @@ require (
 	github.com/libp2p/go-buffer-pool v0.1.0 // indirect
 	github.com/libp2p/go-cidranger v1.1.0 // indirect
 	github.com/libp2p/go-flow-metrics v0.1.0 // indirect
-	github.com/libp2p/go-libp2p v0.28.0 // indirect
+	github.com/libp2p/go-libp2p v0.28.1 // indirect
 	github.com/libp2p/go-libp2p-asn-util v0.3.0 // indirect
 	github.com/libp2p/go-libp2p-kad-dht v0.23.0 // indirect
 	github.com/libp2p/go-libp2p-kbucket v0.5.0 // indirect

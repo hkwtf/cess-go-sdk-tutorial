@@ -11,6 +11,7 @@ import (
 	// go std libs
 	"context"
 	"fmt"
+	"log"
 	"os"
 	"strings"
 	"testing"
@@ -23,7 +24,7 @@ import (
 	// CESS libs
 	cess "github.com/CESSProject/cess-go-sdk"
 	cessConfig "github.com/CESSProject/cess-go-sdk/config"
-	"github.com/CESSProject/cess-go-sdk/core/utils"
+	cessUtils "github.com/CESSProject/cess-go-sdk/core/utils"
 	p2pgo "github.com/CESSProject/p2p-go"
 )
 
@@ -60,7 +61,7 @@ func TestDeOSS(t *testing.T) {
 	bootnodes := make([]string, 0)
 
 	for _, node := range strings.Split(os.Getenv("BOOTSTRAP_NODES"), " ") {
-		addrs, err := utils.ParseMultiaddrs(node)
+		addrs, err := cessUtils.ParseMultiaddrs(node)
 		if err != nil {
 			continue
 		}
@@ -77,21 +78,25 @@ func TestDeOSS(t *testing.T) {
 
 	// todo: write a doc on what `Register()` actually does
 	txHash, _, err := conn.Register(conn.GetRoleName(), p2p.GetPeerPublickey(), "", 0)
-	assert.NoError(t, err)
+	if err != nil { log.Fatal("Connection register() failed: " + err.Error()) }
 
 	fmt.Printf("txHash:\n%+v\n\n", txHash)
 
 	segmentInfo, roothash, err := conn.ProcessingData("../assets/cess-go-sdk-readme.pdf")
 	assert.NoError(t, err)
 
-	owner := []byte(os.Getenv("MY_ADDR"))
+	owner := []byte("0x" + os.Getenv("MY_ADDR"))
+	owner2, err := cessUtils.ParsingPublickey(os.Getenv("MY_ADDR"))
+	if  err != nil { log.Fatal(err) }
+
 	fileName := "cess-go-sdk-readme.pdf"
 	bucketName := "test1"
 	fileSize := uint64(1000)
 
 	fmt.Printf("owner: %+v\n\n", owner)
+	fmt.Printf("owner2: %+v\n\n", owner2)
 
-	res, err := conn.GenerateStorageOrder(roothash, segmentInfo, owner, fileName, bucketName, fileSize)
+	res, err := conn.GenerateStorageOrder(roothash, segmentInfo, owner2, fileName, bucketName, fileSize)
 
 	fmt.Printf("res: %+v\n\n", res)
 	fmt.Printf("err: %+v\n\n", err)
