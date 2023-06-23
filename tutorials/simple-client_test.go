@@ -10,7 +10,6 @@ package tutorial_simple_client_test
 import (
 	// go std libs
 	"context"
-	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -32,8 +31,6 @@ const DEFAULT_WAIT_TIME = time.Second * 15
 const P2P_PORT = 4001
 
 func TestMain(m *testing.M) {
-	fmt.Println("Get into TestMain")
-
 	godotenv.Load("../.env.testnet")
 	os.Exit(m.Run())
 }
@@ -77,27 +74,33 @@ func TestDeOSS(t *testing.T) {
 	assert.NoError(t, err)
 
 	// todo: write a doc on what `Register()` actually does
+	// @astafrode: why `Register()` always return error: ERR_RPC_EMPTY_VALUE
 	txHash, _, err := conn.Register(conn.GetRoleName(), p2p.GetPeerPublickey(), "", 0)
-	if err != nil { log.Fatal("Connection register() failed: " + err.Error()) }
+	if err != nil {
+		log.Printf("Connection register() failed: %v", err.Error())
+	}
 
-	fmt.Printf("txHash:\n%+v\n\n", txHash)
+	log.Printf("txHash:\n%+v\n\n", txHash)
 
 	segmentInfo, roothash, err := conn.ProcessingData("../assets/cess-go-sdk-readme.pdf")
 	assert.NoError(t, err)
 
 	owner := []byte("0x" + os.Getenv("MY_ADDR"))
 	owner2, err := cessUtils.ParsingPublickey(os.Getenv("MY_ADDR"))
-	if  err != nil { log.Fatal(err) }
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	fileName := "cess-go-sdk-readme.pdf"
 	bucketName := "test1"
 	fileSize := uint64(1000)
 
-	fmt.Printf("owner: %+v\n\n", owner)
-	fmt.Printf("owner2: %+v\n\n", owner2)
+	log.Printf("owner: %+v\n\n", owner)
+	log.Printf("owner2: %+v\n\n", owner2)
 
+	// @astafrode: why `GenerateStorageOrder()` always return error: ERR_RPC_EMPTY_VALUE
 	res, err := conn.GenerateStorageOrder(roothash, segmentInfo, owner2, fileName, bucketName, fileSize)
 
-	fmt.Printf("res: %+v\n\n", res)
-	fmt.Printf("err: %+v\n\n", err)
+	log.Printf("res: %+v\n\n", res)
+	log.Printf("err: %+v\n\n", err)
 }
