@@ -73,19 +73,19 @@ func TestDeOSS(t *testing.T) {
 	)
 	assert.NoError(t, err)
 
-	// todo: write a doc on what `Register()` actually does
-	// @astafrode: why `Register()` always return error: ERR_RPC_EMPTY_VALUE
 	txHash, _, err := conn.Register(conn.GetRoleName(), p2p.GetPeerPublickey(), "", 0)
 	if err != nil {
 		log.Printf("Connection register() failed: %v", err.Error())
 	}
 
-	log.Printf("txHash:\n%+v\n\n", txHash)
+	log.Printf("txHash: %+v\n", txHash)
 
-	segmentInfo, roothash, err := conn.ProcessingData("../assets/cess-go-sdk-readme.pdf")
+	segmentInfo, rootHash, err := conn.ProcessingData("../assets/cess-go-sdk-readme.pdf")
 	assert.NoError(t, err)
 
-	owner := []byte("0x" + os.Getenv("MY_ADDR"))
+	log.Printf("segmentInfo: %+v\nrootHash: %+v\n", segmentInfo, rootHash)
+
+	owner := []byte(os.Getenv("MY_ADDR"))
 	owner2, err := cessUtils.ParsingPublickey(os.Getenv("MY_ADDR"))
 	if err != nil {
 		log.Fatal(err)
@@ -95,11 +95,12 @@ func TestDeOSS(t *testing.T) {
 	bucketName := "test1"
 	fileSize := uint64(1000)
 
-	log.Printf("owner: %+v\n\n", owner)
-	log.Printf("owner2: %+v\n\n", owner2)
+	ownerByteStr, _ := cessUtils.NumsToByteStrDefault(owner)
+	owner2ByteStr, _ := cessUtils.NumsToByteStrDefault(owner2)
+	log.Printf("owner: %+v\n", ownerByteStr)
+	log.Printf("owner2: %+v\n", owner2ByteStr)
 
-	// @astafrode: why `GenerateStorageOrder()` always return error: ERR_RPC_EMPTY_VALUE
-	res, err := conn.GenerateStorageOrder(roothash, segmentInfo, owner2, fileName, bucketName, fileSize)
+	res, err := conn.GenerateStorageOrder(rootHash, segmentInfo, owner2, fileName, bucketName, fileSize)
 
 	log.Printf("res: %+v\n\n", res)
 	log.Printf("err: %+v\n\n", err)
